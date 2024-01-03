@@ -1,11 +1,12 @@
 import sys
 from PyQt5 import QtWidgets, uic, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QListWidgetItem
+from PyQt5.QtWidgets import QApplication, QMainWindow, QListWidgetItem, QCalendarWidget
 from PyQt5.QtCore import QTime
-from plyer import notification
 from screen1 import TodoApp1
-
+from rubah import *
 import sqlite3
+
+
 
 
 Ui_MainWindow, QMainWindowBase = uic.loadUiType("UI2.ui")
@@ -18,10 +19,15 @@ class TodoApp2(QMainWindow, Ui_MainWindow):
         self.setGeometry(100, 100, 845, 390)
         self.stacked_widget = stacked_widget  
         self.initUI()
+       
 
+       
     def initUI(self):
-        self.calendarWidget.selectionChanged.connect(self.change)
+        # self.calendarWidget.selectionChanged.connect(self.change)
         
+        perubahan_instance = perubahan()
+        self.calendarWidget.selectionChanged.connect(perubahan_instance.change)
+
         # Tombol add
         self.add.clicked.connect(self.updatetask)
         self.time_edit.setTime(QTime.currentTime())
@@ -75,17 +81,6 @@ class TodoApp2(QMainWindow, Ui_MainWindow):
         for item in selected_items:
             row = self.listWidget.row(item)
             self.listWidget.takeItem(row)
-        
-    def retrieve_tasks(self):
-        self.cursor.execute('SELECT * FROM tasks')
-        rows = self.cursor.fetchall()
-        for row in rows:
-            task = f"{row[0]} - {row[1]}"
-            item = QListWidgetItem(task)
-            item.setFlags(item.flags() | QtCore.Qt.ItemIsUserCheckable)
-            item.setCheckState(QtCore.Qt.Unchecked)
-            self.listWidget.addItem(item)
-
     def updatetask(self):
         if self.lineEdit.text():
             task = self.lineEdit.text()
@@ -99,11 +94,9 @@ class TodoApp2(QMainWindow, Ui_MainWindow):
 
             self.cursor.execute('INSERT INTO tasks VALUES (?, ?, ?)', (task, time, date))
             self.conn.commit()
-
-    def change(self):
-        selected_date = self.calendarWidget.selectedDate().toPyDate().strftime('%d-%m-%Y')
-        self.listWidget.clear()
-        self.cursor.execute('SELECT * FROM tasks WHERE date=?', (selected_date,))
+        
+    def retrieve_tasks(self):
+        self.cursor.execute('SELECT * FROM tasks')
         rows = self.cursor.fetchall()
         for row in rows:
             task = f"{row[0]} - {row[1]}"
@@ -111,13 +104,6 @@ class TodoApp2(QMainWindow, Ui_MainWindow):
             item.setFlags(item.flags() | QtCore.Qt.ItemIsUserCheckable)
             item.setCheckState(QtCore.Qt.Unchecked)
             self.listWidget.addItem(item)
-
-    def showNotification(self, title, message):
-        notification.notify(
-            title=title,
-            message=message,
-            timeout=10
-        )
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

@@ -1,7 +1,10 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QStackedWidget
 from PyQt5 import QtWidgets, uic
-from plyer import notification
+from notif import notifi
+
+
+
 
 
 Ui_MainWindow1, QMainWindowBase1 = uic.loadUiType("UI1.ui")
@@ -25,11 +28,9 @@ class TodoApp1(QMainWindow, Ui_MainWindow1):
         self.stacked_widget.setCurrentIndex(self.stacked_widget.indexOf(screen2))
 
     def donefunc(self):
-        notification.notify(
-        title='Task Done!',
-        message='You have completed a task.',
-        app_name='To Do List'
-        )
+        notifnya = notifi()
+        self.donefunc.selectionChanged.connect(notifnya.showNotification)
+        
     def missfunc(self):
         pass
     
