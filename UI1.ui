@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>847</width>
+    <height>560</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>120</width>
+      <height>511</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background : rgb(80, 0, 0)</string>
+    </property>
+    <widget class="QPushButton" name="done">
+     <property name="geometry">
+      <rect>
+       <x>-50</x>
+       <y>70</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color : rgb(170, 255, 255);
+font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Done</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="miss">
+     <property name="geometry">
+      <rect>
+       <x>-30</x>
+       <y>120</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color :rgb(170, 255, 255);
+font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Missing</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="notyet">
+     <property name="geometry">
+      <rect>
+       <x>-30</x>
+       <y>170</y>
+       <width>121</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color :rgb(170, 255, 255);
+font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Not yet</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color : rgb(170, 255, 255);
+font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
+     </property>
+     <property name="text">
+      <string>MY LIST</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
